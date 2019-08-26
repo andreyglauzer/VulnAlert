@@ -427,6 +427,7 @@ class AlertCVES:
 				score = None
 				severity = None
 				description = None
+				product = None
 
 				if self.today.month <= 9:
 					date_cve = '0{date}'.format(date=self.today.month)
