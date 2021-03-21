@@ -16,13 +16,13 @@ class Telegram:
         time.sleep(2)
         response = requests.post(url)
         if response.status_code in [200, 201, 202, 302, 304]:
-            return True, response.json()
+            return True
         elif response.status_code in range(500, 506):
             self.logger.error(
                 "It was not possible to send notification to Telegram.")
-            return False, None
+            return False
         else:
             self.logger.error(
                 "A very crazy error occurred, I was unable to send the notification to Telegram.")
-            return False, None
+            return False
     
