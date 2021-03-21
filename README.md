@@ -8,6 +8,43 @@ In the settings file, you need to provide valuable information for the alert to 
 
 For telegram alerting to work, you need a toke and chat id. Shipping is done via requests.
 
+## Settings
+
+Make adjustments to settings according to your preferences.
+
+Only send CVE from desired manufacturers:
+
+```
+products:
+  - "windows"
+  - "microsoft"
+  - "oracle"
+  - "mcafee"
+  - "sap"
+```
+
+Tell us how you want to receive your alerts:
+
+Email
+
+```
+email:
+    active: True
+    to:
+      - "to@to.com"
+    template: "config/template.html"
+```
+
+Telegram
+
+```
+telegram:
+  active: True
+  token: "TOKEN"
+  chat: "CHAT"
+  template: "config/telegram.md"
+```
+
 ## Install
 
 ```
@@ -19,29 +56,21 @@ pip install -r requirements.txt
 ## Use
 
 ```
-usage: cve-alert.py [-h] [-c CONFIG] [-i] [-p] [-t TYPE]
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -c CONFIG, --config CONFIG
-                        The directory of the settings file, in Yaml format.
-  -i, --initial         Use this command before --config, if it is the first
-                        time you are running the script, so that it can write
-                        to the database all CVES already reported to date,
-                        without the alert being sent.
-  -p, --products        Use this command before --config if you would like to
-                        receive only CVES alerts whose product is from the
-                        list in the configuration files.
-  -t TYPE, --type TYPE  Enter the type of alert you want to send. Email or
-                        Telegram, if you want to use both use: all
+usage: VulnAlert [-h] --config CONFIGFILE [--service]
+                 [--timesleep ARGTIMESLEEP]
+                 [--log {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [--engine {cve}]
 
 ```
+
+## Command
+
+```
+python3 VulnAlert.py --config config/config.yml --engine cve
+
+``` 
 
 ## Examples Email/Telegram
 
 <p align="center">
-  <img src="utils/img/01.png">
-</p>
-<p align="center">
-  <img src="utils/img/02.png">
+  <img src="images/screenshot.png">
 </p>
